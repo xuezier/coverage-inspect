@@ -1,0 +1,33 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "declaration": true,
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strict": true,
+        "noImplicitAny": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "charset": "utf8",
+        "allowJs": false,
+        "pretty": true,
+        "noEmitOnError": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "strictPropertyInitialization": false,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "inlineSourceMap": true,
+        "outDir": "dist",
+    },
+    "exclude": [
+        "index.d.ts",
+        "dist",
+        "node_modules*"
+    ]
+}

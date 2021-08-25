@@ -1,0 +1,49 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "strict": 0,
+        "space-before-function-paren": "warn",
+        "space-before-blocks": "warn",
+        "space-in-parens": "warn",
+        "no-spaced-func": "warn",
+        "spaced-comment": "warn",
+        "@typescript-eslint/indent": [
+            2,
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-var-requires": "off",
+        "jsdoc/check-tag-names": 0,
+        "jsdoc/require-param-description": 0,
+        "jsdoc/require-param": 0,
+        "jsdoc/check-param-names": 0,
+        "no-unused-vars": "warn",
+        "no-empty-function": "warn",
+        "no-constant-condition": "warn",
+        "no-extra-boolean-cast": "off",
+        "no-var": "error",
+        "no-prototype-builtins": "off",
+        "no-unsafe-finally": "off",
+        "@typescript-eslint/ban-types": "off",
+        "eol-last": "error",
+        "semi": "error",
+        "prefer-spread": "off"
+    }
+}
