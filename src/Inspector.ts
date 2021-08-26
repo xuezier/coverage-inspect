@@ -73,6 +73,8 @@ export class Inspector {
      * @returns
      */
     async dump () {
+        fs.rmdirSync(this.filePath, { recursive: true });
+
         if (!fs.existsSync(this.filePath))
             fs.mkdirSync(this.filePath, { recursive: true });
 
@@ -83,10 +85,11 @@ export class Inspector {
 
         if (this.isReportHtml) {
             const command = `npx`;
-            const args = ['c8', 'report', '--all', '-r', 'html', '--exclude=.vscode', '--exclude=typings', '--exclude=coverage', ...this.reportExclude.map(rule => `--exclude=${rule}`)];
+            const args = ['--registry=https://registry.npm.taobao.org', 'c8', 'report', '--all', '-r', 'html', '--exclude=.vscode', '--exclude=typings', '--exclude=coverage', ...this.reportExclude.map(rule => `--exclude=${rule}`)];
 
             spawnSync(command, args, {
                 cwd: process.cwd(),
+                env: process.env,
             });
         }
     }
