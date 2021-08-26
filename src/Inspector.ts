@@ -89,11 +89,10 @@ export class Inspector {
 
         if (this.isReportHtml) {
             const command = `npx`;
-            const args = ['--registry=https://registry.npm.taobao.org', 'c8', 'report', '--all', '-r', 'html', '--exclude=.vscode', '--exclude=typings', '--exclude=coverage', ...this.reportExclude.map(rule => `--exclude=${rule}`)];
+            const args = ['c8', 'report', '--all', '-r', 'html', '--exclude=.vscode', '--exclude=typings', '--exclude=coverage', ...this.reportExclude.map(rule => `--exclude=${rule}`)];
 
             spawnSync(command, args, {
                 cwd: process.cwd(),
-                env: process.env,
             });
         }
     }
