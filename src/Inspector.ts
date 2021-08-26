@@ -24,7 +24,14 @@ export class Inspector {
     private reportExclude: string[] = [];
 
     constructor (config: Config = {}, logger: any = console) {
+        this.init(config, logger);
 
+
+        this.session.post = <any>promisify(this.session.post);
+        this.session.connect();
+    }
+
+    init (config: Config, logger?: any) {
         const defaultConfig: Config = {
             coverageFilePath: `${process.cwd()}/coverage/tmp`,
             exclude: [
@@ -45,7 +52,7 @@ export class Inspector {
         if (coverageFilePath)
             this.filePath = coverageFilePath;
 
-        this.logger = logger;
+        logger && (this.logger = logger);
 
         this.isReportHtml = !!reportHtml;
 
@@ -55,9 +62,6 @@ export class Inspector {
         });
 
         this.reportExclude = reportExclude || [];
-
-        this.session.post = <any>promisify(this.session.post);
-        this.session.connect();
     }
 
     async start () {
