@@ -1,6 +1,6 @@
 {
     "name": "coverage-inspect",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Node.js App running code coverage inspect",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
