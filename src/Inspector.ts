@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { spawn } from 'child_process';
+import { spawnSync } from 'child_process';
 import { promisify } from 'util';
 import { Session } from 'inspector';
 
@@ -92,9 +92,8 @@ export class Inspector {
             const command = `npx`;
             const args = ['c8', 'report', '--all', '-r', 'html', '--exclude=.vscode', '--exclude=typings', '--exclude=coverage', ...this.reportExclude.map(rule => `--exclude=${rule}`)];
 
-            spawn(command, args, {
+            spawnSync(command, args, {
                 cwd: process.cwd(),
-                stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
                 env: { ...process.env, npm_config_registry: 'https://registry.npmjs.org' },
             });
         }
