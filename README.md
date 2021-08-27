@@ -36,5 +36,7 @@ type Config = {
     enable?: boolean;    // enable code coverage inspect?, default: true
 
     reportHtml?: boolean;// convert dump data to html, default: false
+    reportInclude?: string[];// report include file dirs, default: []
+    reportExclude?: string[];// report exclude file dirs, default: []
 }
 ```

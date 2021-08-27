@@ -22,6 +22,7 @@ export class Inspector {
 
     private isReportHtml = false;
     private reportExclude: string[] = [];
+    private reportInclude: string[] = [];
 
     constructor (config: Config = {}, logger: any = console) {
         this.init(config, logger);
@@ -47,7 +48,7 @@ export class Inspector {
         };
 
         config = Object.assign(defaultConfig, config);
-        const { coverageFilePath, exclude, include, reportHtml, reportExclude } = config;
+        const { coverageFilePath, exclude, include, reportHtml, reportExclude, reportInclude } = config;
 
         if (coverageFilePath)
             this.filePath = coverageFilePath;
@@ -62,6 +63,7 @@ export class Inspector {
         });
 
         this.reportExclude = reportExclude || [];
+        this.reportInclude = reportInclude || [];
     }
 
     async start () {
@@ -90,7 +92,7 @@ export class Inspector {
         if (this.isReportHtml) {
             this.logger.info(`[coverage] report html`);
             const command = `npx`;
-            const args = ['c8', 'report', '--all', '-r', 'html', '--exclude=.vscode', '--exclude=typings', '--exclude=coverage', ...this.reportExclude.map(rule => `--exclude=${rule}`)];
+            const args = ['c8', 'report', '--all', '-r', 'html', '--exclude=.vscode', '--exclude=typings', '--exclude=coverage', ...this.reportExclude.map(rule => `--exclude=${rule}`), ...this.reportInclude.map(rule => `--include=${rule}`)];
 
             spawnSync(command, args, {
                 cwd: process.cwd(),

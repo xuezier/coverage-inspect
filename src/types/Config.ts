@@ -7,4 +7,5 @@ export type Config = {
 
     reportHtml?: boolean;
     reportExclude?: string[];
+    reportInclude?: string[];
 };
