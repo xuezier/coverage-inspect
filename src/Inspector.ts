@@ -88,12 +88,14 @@ export class Inspector {
         fs.writeFileSync(filePath, JSON.stringify({ result: this.result }, null, 2));
 
         if (this.isReportHtml) {
+            this.logger.info(`[coverage] report html`);
             const command = `npx`;
             const args = ['c8', 'report', '--all', '-r', 'html', '--exclude=.vscode', '--exclude=typings', '--exclude=coverage', ...this.reportExclude.map(rule => `--exclude=${rule}`)];
 
             spawn(command, args, {
                 cwd: process.cwd(),
-                stdio: ['inherit', 'inherit', 'inherit', 'ipc' ]
+                stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
+                env: { ...process.env, npm_config_registry: 'https://registry.npmjs.org' },
             });
         }
     }
