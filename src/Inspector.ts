@@ -86,7 +86,16 @@ export class Inspector {
             this.logger.error(e);
         }
 
-        if (!fs.existsSync(this.filePath))
+        let exists = true;
+        try {
+            exists = fs.existsSync(this.filePath);
+        }
+        catch(e) {
+            this.logger.error(e);
+            exists = false;
+        }
+
+        if (!exists)
             fs.mkdirSync(this.filePath, { recursive: true });
 
         const filePath = path.resolve(this.filePath, `coverage-${process.pid}-${DateFormat(new Date())}.json`);
