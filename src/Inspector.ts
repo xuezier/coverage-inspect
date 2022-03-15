@@ -79,7 +79,12 @@ export class Inspector {
      * @returns
      */
     async dump () {
-        fs.rmdirSync(this.filePath, { recursive: true });
+        try {
+            fs.rmdirSync(this.filePath, { recursive: true });
+        }
+        catch (e) {
+            this.logger.error(e);
+        }
 
         if (!fs.existsSync(this.filePath))
             fs.mkdirSync(this.filePath, { recursive: true });
