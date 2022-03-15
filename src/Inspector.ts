@@ -130,6 +130,11 @@ export class Inspector {
     }
 
     clean () {
-        fs.rmdirSync(this.filePath, { recursive: true });
+        try {
+            fs.rmdirSync(this.filePath, { recursive: true });
+        }
+        catch(e) {
+            this.logger.error(e);
+        }
     }
 }
